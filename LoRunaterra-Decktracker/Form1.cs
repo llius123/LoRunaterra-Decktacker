@@ -77,7 +77,7 @@ namespace LoRunaterra_Decktracker
         {
             ApiRunaterraJuego juego = new ApiRunaterraJuego();
 
-            juego.getStaticDecklist();
+            juego.IniciarBusqueda();
         }
     }
 
