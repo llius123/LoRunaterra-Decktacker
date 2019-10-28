@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace LoRunaterra_Decktracker.API
 {
@@ -44,6 +45,8 @@ namespace LoRunaterra_Decktracker.API
             resultado = getGameResult();
             Console.WriteLine("Partida Acabada");
             label_status.Text = "Partida acabada";
+
+            jsonServices.InsertarAJSON(deckActivo, resultado);
             IniciarBusqueda(label_status);
 
         }
@@ -94,5 +97,8 @@ namespace LoRunaterra_Decktracker.API
 
             return resultado;
         }
+
+        
+
     }
 }
