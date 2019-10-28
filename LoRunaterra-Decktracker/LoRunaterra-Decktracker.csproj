@@ -36,8 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LoRDeckCodes">
-      <HintPath>..\..\LoRDeckCodes-master\LoRDeckCodes\bin\Debug\net461\LoRDeckCodes.dll</HintPath>
+    <Reference Include="LoRDeckCodes, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>assets\LoRDeckCodes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
