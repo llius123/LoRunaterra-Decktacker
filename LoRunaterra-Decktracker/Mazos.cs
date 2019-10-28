@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LoRunaterra_Decktracker
 {
-    public partial class Historial : Form
+    public partial class Mazos : Form
     {
-        public Historial()
+        public Mazos()
         {
             InitializeComponent();
         }

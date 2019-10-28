@@ -55,7 +55,7 @@ namespace LoRunaterra_Decktracker
 
         private void btn_historial_Click(object sender, EventArgs e)
         {
-            AbrirFormularios(new Historial());
+            AbrirFormularios(new Mazos());
         }
 
         private void IniciarStatus()

@@ -60,28 +60,28 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Global\ActiveDeck.cs" />
-    <Compile Include="Historial.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Historial.Designer.cs">
-      <DependentUpon>Historial.cs</DependentUpon>
-    </Compile>
     <Compile Include="InicioForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InicioForm.Designer.cs">
       <DependentUpon>InicioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mazos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mazos.Designer.cs">
+      <DependentUpon>Mazos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial.resx">
-      <DependentUpon>Historial.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InicioForm.resx">
       <DependentUpon>InicioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mazos.resx">
+      <DependentUpon>Mazos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

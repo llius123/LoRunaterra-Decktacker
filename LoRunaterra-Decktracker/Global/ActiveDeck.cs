@@ -17,9 +17,9 @@ namespace LoRunaterra_Decktracker.Global
     class Card
     {
         private string _code;
-        private int number;
+        private int _number;
 
-        public int Number { get => number; set => number = value; }
+        public int Number { get => _number; set => _number = value; }
         public string Code { get => _code; set => _code = value; }
     }
 }

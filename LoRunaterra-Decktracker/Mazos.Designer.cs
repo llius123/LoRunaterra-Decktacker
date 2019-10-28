@@ -1,6 +1,6 @@
 ﻿namespace LoRunaterra_Decktracker
 {
-    partial class Historial
+    partial class Mazos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView_historial_partidos = new System.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // listView_historial_partidos
+            // listView1
             // 
-            this.listView_historial_partidos.HideSelection = false;
-            this.listView_historial_partidos.Location = new System.Drawing.Point(0, 0);
-            this.listView_historial_partidos.Name = "listView_historial_partidos";
-            this.listView_historial_partidos.Size = new System.Drawing.Size(802, 451);
-            this.listView_historial_partidos.TabIndex = 0;
-            this.listView_historial_partidos.UseCompatibleStateImageBehavior = false;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(776, 426);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // Historial
+            // Mazos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView_historial_partidos);
+            this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Historial";
-            this.Text = "Historial";
+            this.Name = "Mazos";
+            this.Text = "Mazos";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView_historial_partidos;
+        private System.Windows.Forms.ListView listView1;
     }
 }
