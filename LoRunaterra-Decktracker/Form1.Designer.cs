@@ -1,4 +1,6 @@
-﻿namespace LoRunaterra_Decktracker
+﻿using System.Runtime.CompilerServices;
+
+namespace LoRunaterra_Decktracker
 {
     partial class Form1
     {
@@ -234,6 +236,7 @@
 
         #endregion
 
+
         private System.Windows.Forms.Panel panel_botones;
         private System.Windows.Forms.Button btn_historial;
         private System.Windows.Forms.Button btn_inicio;
@@ -248,6 +251,10 @@
         private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
+
+        
+
+        
     }
 }
 

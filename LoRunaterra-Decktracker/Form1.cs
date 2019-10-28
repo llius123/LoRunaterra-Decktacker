@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using LoRDeckCodes;
 using static LoRDeckCodes.LoRDeckEncoder;
 using System.Configuration;
+using System.Runtime.CompilerServices;
 using LoRunaterra_Decktracker.API;
 using  System.Runtime.InteropServices;
 
@@ -18,7 +19,6 @@ namespace LoRunaterra_Decktracker
 {
     public partial class Form1 : Form
     {
-        
         public Form1()
         {
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace LoRunaterra_Decktracker
         {
             ApiRunaterraJuego juego = new ApiRunaterraJuego();
 
-            juego.IniciarBusqueda();
+            juego.IniciarBusqueda(label_status);
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -103,11 +103,14 @@ namespace LoRunaterra_Decktracker
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-         
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-                
+
         }
+
+       
+
     }
 
 }
