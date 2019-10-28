@@ -42,9 +42,9 @@
             // 
             this.panel_botones.Controls.Add(this.btn_historial);
             this.panel_botones.Controls.Add(this.btn_inicio);
-            this.panel_botones.Location = new System.Drawing.Point(-1, 0);
+            this.panel_botones.Location = new System.Drawing.Point(5, 0);
             this.panel_botones.Name = "panel_botones";
-            this.panel_botones.Size = new System.Drawing.Size(190, 413);
+            this.panel_botones.Size = new System.Drawing.Size(184, 413);
             this.panel_botones.TabIndex = 0;
             // 
             // btn_historial
@@ -71,29 +71,29 @@
             // 
             this.panel_contendor.Location = new System.Drawing.Point(196, 0);
             this.panel_contendor.Name = "panel_contendor";
-            this.panel_contendor.Size = new System.Drawing.Size(604, 451);
+            this.panel_contendor.Size = new System.Drawing.Size(592, 451);
             this.panel_contendor.TabIndex = 1;
             // 
             // panel_status
             // 
             this.panel_status.Controls.Add(this.label_status);
-            this.panel_status.Location = new System.Drawing.Point(-1, 420);
+            this.panel_status.Location = new System.Drawing.Point(5, 420);
             this.panel_status.Name = "panel_status";
-            this.panel_status.Size = new System.Drawing.Size(190, 31);
+            this.panel_status.Size = new System.Drawing.Size(184, 31);
             this.panel_status.TabIndex = 2;
             // 
             // label_status
             // 
-            this.label_status.Location = new System.Drawing.Point(3, 3);
+            this.label_status.Location = new System.Drawing.Point(13, 3);
             this.label_status.Name = "label_status";
-            this.label_status.Size = new System.Drawing.Size(180, 22);
+            this.label_status.Size = new System.Drawing.Size(170, 22);
             this.label_status.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 473);
             this.Controls.Add(this.panel_status);
             this.Controls.Add(this.panel_contendor);
             this.Controls.Add(this.panel_botones);
