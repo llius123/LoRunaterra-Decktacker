@@ -16,22 +16,23 @@ namespace LoRunaterra_Decktracker.Global
             string deckCode = deck.DeckCode;
             bool result = game.LocalPlayerWon;
 
-            if (File.Exists(path))
+            if (File.Exists(path)) //Si ya existe el fichero donde guardar los datos
             {
                 Console.WriteLine("Existe");
                 string output = "";
-                using (StreamReader reader = File.OpenText(path))
+                using (StreamReader reader = File.OpenText(path)) //Leemos el contenido del fichero
                 {
                     JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
                     
-                        JObject aux = (JObject)o.GetValue(deckCode);
+                        JObject aux = (JObject)o.GetValue(deckCode); //Buscamos el mazo en el fichero con el que se ha jugado la partida
                         
-                        if (aux != null)
+                        if (aux != null)//Si ese mazo existe, es decir ya se ha jugado antes y se tienen datos sobre el, solamente se actualiza el valor de victorias o derrotas
                         {
+                            //Obtenemos los parametros victoria y derrota
                             int victorias = (int)aux.GetValue("wins");
                             int derrotas = (int)aux.GetValue("lose");
 
-                            if (result)
+                            if (result) //Actualizamos estos parámetros
                             { 
                                 victorias++;
                             }
@@ -39,91 +40,93 @@ namespace LoRunaterra_Decktracker.Global
                             {
                                 derrotas++;
                             }
-
+                            
+                            //Creamos un nuevo JObject con los datos actualizados
                             JObject nuevoRes = new JObject(
                                 new JProperty("wins", victorias),
                                 new JProperty("lose", derrotas));
-                            o[deckCode] = nuevoRes;
-                            output = Newtonsoft.Json.JsonConvert.SerializeObject(o, Newtonsoft.Json.Formatting.Indented);
+
+                            o[deckCode] = nuevoRes; //Sustituimos los datos viejos por los nuevos
+                            output = Newtonsoft.Json.JsonConvert.SerializeObject(o, Newtonsoft.Json.Formatting.Indented); //Generamos el string para poder escribir a fichero
                     }
-                    else
+                    else //En caso de que no se tenga información sobre el mazo
                     {
-                        JProperty newDeck;
-                        if (result)
-                        {
+                        JProperty newDeck = CreateJPropertyDeck(deckCode, result); //Se crea un Jproperty con la información del mazo
 
-                             newDeck =
-                                 new JProperty(deckCode,
-                                        new JObject(
-                                            new JProperty("wins", 1),
-                                            new JProperty("lose", 0)
-                                        ));
-                        }
-                        else
-                        {
-                             newDeck =
-                                
-                                    new JProperty(deckCode,
-                                        new JObject(
-                                            new JProperty("wins", 0),
-                                            new JProperty("lose", 1)
-                                        ));
-                        }
-
-                        o.Add(newDeck);
-                        output = Newtonsoft.Json.JsonConvert.SerializeObject(o, Newtonsoft.Json.Formatting.Indented);
+                        o.Add(newDeck);//Se le añade al JSON leido de fichero
+                        output = Newtonsoft.Json.JsonConvert.SerializeObject(o, Newtonsoft.Json.Formatting.Indented); //Generamos el string para poder escribir a fichero
                     }
                     
                     reader.Close();
                 }
 
-                File.WriteAllText(path, output);
+                File.WriteAllText(path, output); //Escribimos en fichero
 
+            }
+            else //En caso de que no exista el fichero
+            {
+                
+                Console.WriteLine("No Existe");
+
+                JObject rss = CreateJObjectDeck(deckCode, result); //Creamos un objeto JSON que tiene el codigo del mazo y la información sobre victorias y derrotas
+
+                //File.Create(path);
+                using (StreamWriter file = File.CreateText(path)) //Se crea el fichero
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    //Se escribe en el fichero
+                    serializer.Serialize(file, rss); 
+                }
+            }
+        }
+
+        private static JObject CreateJObjectDeck(string deckCode, bool result) //Metodo usado para crear un JObject con la informacion del mazo, tiene la siguiente estructura {deckcode:{win:N, lose:M}}
+        {
+            JObject res;
+            if (result)
+            { 
+                res = new JObject(
+                    new JProperty(deckCode,
+                        new JObject(
+                            new JProperty("wins", 1),
+                            new JProperty("lose", 0)
+                        )));
             }
             else
             {
-                //{deckcode:{win:N, lose:M}}
-                Console.WriteLine("No Existe");
-
-                JObject rss;
-                if (result)
-                {
-                    rss =
-                       new JObject(
-                           new JProperty(deckCode,
-                               new JObject(
-                                   new JProperty("wins", 1),
-                                   new JProperty("lose", 0)
-                                   )));
-                }
-                else
-                {
-                    rss =
-                       new JObject(
-                           new JProperty(deckCode,
-                               new JObject(
-                                   new JProperty("wins", 0),
-                                   new JProperty("lose", 1)
-                               )));
-                }
-                //File.Create(path);
-                using (StreamWriter file = File.CreateText(path))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    //serialize object directly into file stream
-                    serializer.Serialize(file, rss);
-                }
-
-
-
-
-
-
+                res = new JObject(
+                    new JProperty(deckCode,
+                        new JObject(
+                            new JProperty("wins", 0),
+                            new JProperty("lose", 1)
+                        )));
             }
-
+            return res;
         }
 
 
-
+        private static JProperty CreateJPropertyDeck(string deckCode, bool result) //Metodo usado para crear un JProperty con la informacion de un mazo nuevo a insertar en fichero existente deckcode:{win:N, lose:M}
+        {
+            JProperty newDeck;
+            if (result)
+            {
+                newDeck =
+                    new JProperty(deckCode,
+                        new JObject(
+                            new JProperty("wins", 1),
+                            new JProperty("lose", 0)
+                        ));
+            }
+            else
+            {
+                newDeck =
+                    new JProperty(deckCode,
+                        new JObject(
+                            new JProperty("wins", 0),
+                            new JProperty("lose", 1)
+                        ));
+            }
+            return newDeck;
+        }
     }
 }
