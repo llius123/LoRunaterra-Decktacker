@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using LoRunaterra_Decktracker.Global;
+using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using LoRDeckCodes;
+using static LoRDeckCodes.LoRDeckEncoder;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using LoRDeckCodes;
 
 namespace LoRunaterra_Decktracker.Global
 {
@@ -128,5 +133,55 @@ namespace LoRunaterra_Decktracker.Global
             }
             return newDeck;
         }
+
+        public static List<string> GetFactions(String deckCode)
+        {
+            List<string> FactionList = new List<string>();
+            List<CardCodeAndCount> aux = new List<CardCodeAndCount>();
+            Console.WriteLine(deckCode);
+            deckCode = deckCode.Substring(1, deckCode.Length-1);
+            Console.WriteLine(deckCode);
+            aux = GetDeckFromCode(deckCode);
+            foreach (var x in aux)
+            {
+                
+                string faction = GetCardFaction(x.CardCode);
+                bool alreadyExists = FactionList.Contains(faction);
+                if (!alreadyExists)
+                {
+                    FactionList.Add(faction);
+                }
+            }
+            
+            return FactionList;
+
+        }
+
+        private static string GetCardFaction(string cardCode)
+        {
+            string[] filePaths = Directory.GetFiles("cards-data");
+
+            foreach (string path in filePaths)
+            {
+                using (StreamReader reader = File.OpenText(path)) //Leemos el contenido del fichero
+                {
+                    JArray o = (JArray) JToken.ReadFrom(new JsonTextReader(reader));
+                    foreach (var card in o)
+                    {
+                        if ((string) card["cardCode"] == cardCode)
+                        {
+                            Console.WriteLine(card["region"]);
+                            return (string) card["region"];
+                        }
+                        
+                    }
+
+                }
+            }
+
+
+            return "hola";
+        }
+
     }
 }
