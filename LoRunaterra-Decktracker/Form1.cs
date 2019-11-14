@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Runtime.CompilerServices;
 using LoRunaterra_Decktracker.API;
 using  System.Runtime.InteropServices;
+using System.Threading;
 
 namespace LoRunaterra_Decktracker
 {
@@ -85,8 +86,11 @@ namespace LoRunaterra_Decktracker
         private void IniciarBusqueda()
         {
             ApiRunaterraJuego juego = new ApiRunaterraJuego();
+            
 
-            juego.IniciarBusqueda(label_status);
+            Thread thread = new Thread(() => juego.IniciarBusqueda(label_status));
+            thread.Start();
+            //juego.IniciarBusqueda(label_status);
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
